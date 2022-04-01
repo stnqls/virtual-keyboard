@@ -16,7 +16,7 @@ module.exports = {
   devServer: {
     host: "localhost",
     port: 8000,
-    open: true,
+    // open: true,
     watchFiles: "index.html",
   },
   plugins: [
