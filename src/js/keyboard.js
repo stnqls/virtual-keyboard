@@ -62,25 +62,17 @@ export class Keyboard {
   }
 
   #onInput(event) {
-    event.target.value = event.target.value.replace(
-      /[ㄱ-ㅎ | ㅏ-ㅣ|가-힣]/,
-      ""
-    );
+    event.target.value = event.target.value.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, "");
   }
 
   #onKeyDown(event) {
     if (this.#mouseDown) return;
     this.#keyPress = true;
-    this.#inputGroupEl.classList.toggle(
-      "error",
-      /[ㄱ-ㅎ | ㅏ-ㅣ|가-힣]/.test(event.key === "Process")
-    );
+    this.#inputGroupEl.classList.toggle("error", event.key === "Process");
 
-    if (this.#keyboardEl.querySelector(`[data-code=${event.code}]`)) {
-      this.#keyboardEl
-        .querySelector(`[data-code=${event.code}]`)
-        .classList.add("active");
-    }
+    this.#keyboardEl
+      .querySelector(`[data-code=${event.code}]`)
+      ?.classList.add("active");
   }
 
   #onKeyUp(event) {
